@@ -1,0 +1,70 @@
+{
+  "name": "Pipl Connector",
+  "version": "0.0.1",
+  "description": "description",
+  "tags": ["incoming", "outgoing", "batch", "oneColumn", "smart-notifier"],
+  "ui": false,
+  "picture": "picture.png",
+  "admin": "admin.html",
+  "readme": "readme.md",
+  "private_settings": [
+    {
+      "name": "api_key",
+      "title": "Pipl Business Premium API Key",
+      "type": "string",
+      "description": "Find it on https://pipl.com/api/manage/keys/"
+    },
+    {
+      "name": "synchronized_user_segments",
+      "title": "Send users to Pipl when belonging to one of these user segments",
+      "type": "array",
+      "default": [],
+      "format": "segment"
+    },
+    {
+      "name": "user_email",
+      "title": "User email",
+      "type": "string",
+      "format": "trait"
+    },
+    {
+      "name": "user_first_name",
+      "title": "User first name",
+      "type": "string",
+      "format": "trait"
+    },
+    {
+      "name": "user_last_name",
+      "title": "User last name",
+      "type": "string",
+      "format": "trait"
+    },
+    {
+      "name": "user_country",
+      "title": "User country",
+      "type": "string",
+      "format": "trait"
+    },
+    {
+      "name": "pipl_daily_rate_limit",
+      "title": "Pipl daily rate limit",
+      "type": "number",
+      "default": 100
+    },
+    {
+      "name": "pipl_match_requirements",
+      "title": "Pipl match requirements",
+      "type": "string"
+    }
+  ],
+  "settings": [],
+  "resources": [],
+  "subscriptions": [{ "url": "/smart-notifier" }],
+  "schedules" : [
+    {
+      "url": "/status",
+      "type": "cron",
+      "value": "*/30 * * * *"
+    }
+  ]
+}
