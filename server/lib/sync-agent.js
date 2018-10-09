@@ -113,10 +113,7 @@ class SyncAgent {
       updatedEnvelopes.map(async updatedEnvelope => {
         try {
           if (!updatedEnvelope.piplPerson) {
-            if (
-              !_.isNil(updatedEnvelope.piplPersonCount) 
-              && updatedEnvelope.piplPersonCount !== 0
-              ) {
+            if (updatedEnvelope.piplMatch) {
               await this.hullClient
                 .asUser(updatedEnvelope.message.user)
                 .traits({"pipl/fetched_at": {

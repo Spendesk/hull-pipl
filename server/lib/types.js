@@ -250,7 +250,7 @@ export type PiplEnrichEnvelope = {
   hullUser: HullUser,
   piplRequestParams: PiplRequestParams,
   piplPerson: PiplPerson | null,
-  piplPersonCount: number | null,
+  piplMatch: boolean,
   skipReason: string | null,
   error: string | null
 };

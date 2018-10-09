@@ -68,7 +68,7 @@ class ServiceClient {
     }
 
     if (
-      await this.getDailyRate() === this.dailyRateLimit
+      await this.getDailyRate() >= this.dailyRateLimit
     ) {
       throw new Error("Pipl daily rate limit is reached.");
     }
@@ -91,17 +91,17 @@ class ServiceClient {
         const enrichedEnvelope = _.cloneDeep(envelope);
         return this.piplEnrich(envelope.piplRequestParams)
           .then(async response => {
-            enrichedEnvelope.piplPersonCount = response.body["@persons_count"];
+            enrichedEnvelope.piplMatch = !_.isNil(response.body.person) || !_.isNil(response.body.possible_persons);
             enrichedEnvelope.piplPerson = response.body.person;
 
-            if(enrichedEnvelope.piplPersonCount != 0) {
+            if(enrichedEnvelope.piplMatch) {
               await this.incrementDailyRate();
             }
 
             return enrichedEnvelope;
           })
           .catch(error => {
-            enrichedEnvelope.error = error.response.body;
+            enrichedEnvelope.error = error.message;
             return enrichedEnvelope;
           });
       })
