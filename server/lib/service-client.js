@@ -113,7 +113,7 @@ class ServiceClient {
   }
 
   async getDailyRate(): Promise<number> {
-    return await this.cache.get(this.dailyRateCacheKey());
+    return (await this.cache.get(this.dailyRateCacheKey()) || 0);
   }
 
   async incrementDailyRate(): Promise<number> {
