@@ -13,8 +13,8 @@
   "license": "MIT",
   "author": {
     "name": "Hull",
-    "email": "contact@hull.io",
-    "url": "https://hull.io"
+    "email": "aurelien@spendesk.com",
+    "url": "https://spendesk.com"
   },
   "keywords": [
     "hull",
@@ -58,12 +58,13 @@
     "bluebird": "^3.4.1",
     "cache-manager-redis": "^0.4.0",
     "body-parser": "^1.18.2",
+    "cors": "^2.8.4",
     "css-loader": "^0.28.11",
     "debug": "^3.1.0",
     "express": "^4.16.3",
     "file-loader": "^1.1.11",
     "happypack": "^4.0.1",
-    "hull": "0.13.16",
+    "hull": "^0.14.0-beta.13",
     "lodash": "^4.17.5",
     "moment": "^2.21.0",
     "newrelic": "^4.0.0",

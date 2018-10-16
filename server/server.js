@@ -1,35 +1,42 @@
 /* @flow */
 import type { $Application } from "express";
 
-const { notifHandler, smartNotifierHandler } = require("hull/lib/utils");
+const cors = require("cors");
+const { notificationHandler, batchHandler } = require("hull/lib/handlers");
+const { credsFromQueryMiddlewares } = require("hull/lib/utils");
 
 const actions = require("./actions/index");
 
 function server(app: $Application): $Application {
   app.post(
     "/smart-notifier",
-    smartNotifierHandler({
-      handlers: {
-        "user:update": actions.userUpdate
-      }
+    notificationHandler({
+      "user:update": actions.userUpdate
     })
   );
 
   app.post(
     "/batch",
-    notifHandler({
-      userHandlerOptions: {
-        maxSize: 200
-      },
-      handlers: {
-        "user:update": actions.userUpdate
+    batchHandler({
+      "user:update": {
+        callback: actions.userUpdate,
+        options: {
+          maxSize: 200
+        }
       }
     })
   );
+  
+  app.get(
+    "/request-params-fields",
+    cors(),
+    ...credsFromQueryMiddlewares(),
+    actions.requestParamsFields
+  );
 
-  app.get("/admin", actions.adminHandler);
+  app.get("/admin", ...credsFromQueryMiddlewares(), actions.adminHandler);
 
-  app.all("/status", actions.statusCheck);
+  app.all("/status", ...credsFromQueryMiddlewares(), actions.statusCheck);
 
   return app;
 }
