@@ -14,10 +14,16 @@
           "synchronized_user_segments": [
               "59f09bc7f9c5a94af600076d"
           ],
-          "user_email": "email",
-          "user_first_name": "first_name",
-          "user_last_name": "last_name",
-          "user_country": "country",
+          "pipl_params_attributes": [
+            {
+               "hull_field_name": "email",
+               "pipl_field_name": "email"
+            },
+            {
+               "hull_field_name": "first_name",
+               "pipl_field_name": "last_name"
+            }
+          ],
           "pipl_daily_rate_limit": 100,
           "pipl_match_requirements": "phone.mobile",
           "api_key": "API_KEY",

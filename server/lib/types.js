@@ -125,13 +125,15 @@ export type HullClient = {
  * Pipl Types, specific for this connector 
  */
 
+export type PiplParamsAttribute = {
+  hull_field_name: string,
+  pipl_field_name: string
+};
+
 export type PiplConnectorSettings = {
   api_key: string,
   synchronized_user_segments: Array<string>,
-  user_email: string,
-  user_first_name: string,
-  user_last_name: string,
-  user_country?: string,
+  pipl_params_attributes: Array<PiplParamsAttribute> ,
   pipl_daily_rate_limit: number,
   pipl_match_requirements: string
 };
@@ -238,11 +240,7 @@ export type FilterResults<T> = {
 };
 
 export type PiplRequestParams = {
-  first_name: string,
-  last_name: string,
-  email: string,
-  match_requirements: string,
-  country?: string
+  [string]: string
 };
 
 export type PiplEnrichEnvelope = {

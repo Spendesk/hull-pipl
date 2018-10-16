@@ -3,7 +3,7 @@ import type { THullUserAttributes } from "hull";
 import type { PiplPerson } from "../types";
 
 const _ = require("lodash");
-const freeEmailDomains = require("../free-email-domains");
+const freeEmailDomains = require("../defs/free-email-domains-def");
 
 class MappingUtil {
   piplArrayAttributes: Array<string>;

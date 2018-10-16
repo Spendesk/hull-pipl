@@ -68,9 +68,12 @@ class FilterUtil {
     const piplRequestParams = envelope.piplRequestParams;
 
     return (
-      !_.isEmpty(piplRequestParams.first_name) &&
-      !_.isEmpty(piplRequestParams.last_name) &&
-      !_.isEmpty(piplRequestParams.email)
+      !_.isEmpty(piplRequestParams.email) ||
+      !_.isEmpty(piplRequestParams.phone) ||
+      !_.isEmpty(piplRequestParams.username) ||
+      !_.isEmpty(piplRequestParams.user_id) ||
+      !_.isEmpty(piplRequestParams.url) ||
+      (!_.isEmpty(piplRequestParams.first_name) && !_.isEmpty(piplRequestParams.last_name))
     );
   }
 

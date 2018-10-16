@@ -8,6 +8,7 @@ import type {
 import type {
   HullMetrics,
   HullClient,
+  HullFieldDropdownItem,
   PiplConnectorSettings,
   PiplRequestParams,
   PiplEnrichEnvelope,
@@ -68,13 +69,12 @@ class SyncAgent {
     const combinedUser = _.cloneDeep(message.user);
     combinedUser.account = _.cloneDeep(message.account);
 
-    const piplRequestParams: PiplRequestParams = {
-      first_name: _.get(combinedUser, this.privateSettings.user_first_name),
-      last_name: _.get(combinedUser, this.privateSettings.user_last_name),
-      email: _.get(combinedUser, this.privateSettings.user_email),
-      match_requirements: this.privateSettings.pipl_match_requirements,
-      country: _.get(combinedUser, this.privateSettings.user_country)
-    };
+    const piplRequestParams: PiplRequestParams = {};
+    
+    _.each(this.privateSettings.pipl_params_attributes, attribute => {
+      piplRequestParams[attribute.pipl_field_name] = _.get(combinedUser, attribute.hull_field_name);
+    });
+    piplRequestParams.match_requirements = this.privateSettings.pipl_match_requirements;
 
     const envelope = {};
     envelope.message = message;

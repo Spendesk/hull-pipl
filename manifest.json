@@ -1,6 +1,6 @@
 {
   "name": "Pipl Connector",
-  "version": "0.0.1",
+  "version": "0.0.2",
   "description": "description",
   "tags": ["incoming", "outgoing", "batch", "oneColumn", "smart-notifier"],
   "ui": false,
@@ -22,28 +22,35 @@
       "format": "segment"
     },
     {
-      "name": "user_email",
-      "title": "User email",
-      "type": "string",
-      "format": "trait"
-    },
-    {
-      "name": "user_first_name",
-      "title": "User first name",
-      "type": "string",
-      "format": "trait"
-    },
-    {
-      "name": "user_last_name",
-      "title": "User last name",
-      "type": "string",
-      "format": "trait"
-    },
-    {
-      "name": "user_country",
-      "title": "User country",
-      "type": "string",
-      "format": "trait"
+      "name": "pipl_params_attributes",
+      "title": "Params attributes for the Pipl request",
+      "type": "array",
+      "format": "table",
+      "default": [
+        { "hull_field_name": "name", "pipl_field_name": "name" }
+      ],
+      "items": {
+        "type": "object",
+        "properties": {
+          "hull_field_name" : {
+            "type" : "string",
+            "format" : "trait",
+            "title" : "Hull Attribute"
+          },
+          "pipl_field_name" : {
+            "type" : "string",
+            "title" : "Pipl Param",
+            "format" : "select",
+            "options" : {
+              "loadOptions" : "/request-params-fields"
+            }
+          }
+        },
+        "required" : [
+          "hull_field_name",
+          "pipl_field_name"
+        ]
+      }
     },
     {
       "name": "pipl_daily_rate_limit",
