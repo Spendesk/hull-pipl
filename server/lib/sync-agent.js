@@ -41,7 +41,7 @@ class SyncAgent {
     this.hullConnector = reqContext.connector;
     this.cache = reqContext.cache;
     this.helpers = reqContext.helpers;
-    this.privateSettings = _.get(reqContext, "ship.private_settings");
+    this.privateSettings = _.get(reqContext, "connector.private_settings");
 
     this.mappingUtil = new MappingUtil();
 
