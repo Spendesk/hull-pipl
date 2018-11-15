@@ -6,9 +6,9 @@ const _ = require("lodash");
 const SyncAgent = require("../lib/sync-agent");
 
 function statusCheckAction(req: THullRequest, res: $Response): void {
-  if (_.has(req, "hull.ship.private_settings")) {
+  if (_.has(req, "hull.connector.private_settings")) {
     const { client } = req.hull;
-    const connector = req.hull.connector || req.hull.ship;
+    const connector = req.hull.connector;
     const syncAgent = new SyncAgent(req.hull);
     const messages: Array<string> = [];
     let status: string = "ok";
