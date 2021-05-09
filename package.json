@@ -65,7 +65,7 @@
     "file-loader": "^1.1.11",
     "happypack": "^4.0.1",
     "hull": "^0.14.0-beta.13",
-    "lodash": "^4.17.5",
+    "lodash": "^4.17.21",
     "moment": "^2.21.0",
     "newrelic": "^4.0.0",
     "postcss-flexbugs-fixes": "^3.3.0",
